@@ -475,6 +475,28 @@ class Config(callbacks.Plugin):
         irc.replySuccess()
     setdefault = wrap(setdefault, ['settableConfigVar'])
 
+    @internationalizeDocstring
+    def append(self, irc, msg, args, group, value):
+        """<name> <value>
+
+        Appends the <value> to the configuration variable <name>
+        after checking if the variable is a type of a list.
+        """
+        self._getValue(irc, msg, group)
+
+    append = wrap(append, ['settableConfigVar'])
+
+
+    @internationalizeDocstring
+    def pop(self, irc, msg, args, group, value):
+        """<name> <value>
+
+        pop the <value> to the configuration variable <name>
+        after checking if the variable is a type of a list.
+        """
+
+    pop = wrap(pop, ['settableConfigVar'])
+
     class reset_(callbacks.Commands):
         # to prevent conflict with the reset() command of callbacks, this class
         # is renamed 'reset_'
